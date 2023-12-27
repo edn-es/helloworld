@@ -26,8 +26,8 @@ jreleaser {
                 create("maven-central") {
                     active = 'ALWAYS'
                     url = "https://s01.oss.sonatype.org/service/local"
-                    closeRepository = false
-                    releaseRepository = false
+                    closeRepository = true
+                    releaseRepository = true
                     stagingRepositories.add("hello-world-lib/build/staging-deploy")
                 }
             }
