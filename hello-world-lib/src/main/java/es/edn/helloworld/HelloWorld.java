@@ -3,7 +3,14 @@
  */
 package es.edn.helloworld;
 
+/**
+ *  A simple class
+ */
 public class HelloWorld {
+    /**
+     * Say hello
+     * @return the string hello world
+     */
     public String sayHello() {
         return "hello world";
     }

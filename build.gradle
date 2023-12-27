@@ -1,8 +1,9 @@
 plugins {
-    id("maven-publish")
     id("org.jreleaser") version "1.9.0"
     id("signing")
 }
+
+group 'es.edn'
 
 jreleaser {
     project {
@@ -24,8 +25,8 @@ jreleaser {
                 create("maven-central") {
                     active = 'ALWAYS'
                     url = "https://s01.oss.sonatype.org/service/local"
-                    closeRepository = true
-                    releaseRepository = true
+                    closeRepository = false
+                    releaseRepository = false
                     stagingRepositories.add("build/staging-deploy")
                 }
             }

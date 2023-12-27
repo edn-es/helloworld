@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = 'es.edn.helloworld'
-include('lib')
+include('hello-world-lib')

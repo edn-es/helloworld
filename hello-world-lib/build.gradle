@@ -11,6 +11,8 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+
+    id("maven-publish")
 }
 
 repositories {
@@ -35,9 +37,60 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.jar{
+    enabled = true
+    // Remove `plain` postfix from jar file name
+    archiveClassifier = ""
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId = 'hello-world'
+
+            from components.java
+
+            pom {
+                name = 'hello-world'
+                description = 'Sample application'
+                url = 'https://github.com/edn-es/helloworld'
+                inceptionYear = '2023'
+                licenses {
+                    license {
+                        name = 'Apache-2.0'
+                        url = 'https://spdx.org/licenses/Apache-2.0.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jagedn'
+                        name = 'Jorge Aguilera'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/edn-es/helloworld.git'
+                    developerConnection = 'scm:git:ssh://github.com/edn-es/helloworld.git'
+                    url = 'http://github.com/edn-es/helloworld'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+    }
 }
