@@ -1,0 +1,34 @@
+plugins {
+    id("maven-publish")
+    id("org.jreleaser") version "1.9.0"
+    id("signing")
+}
+
+jreleaser {
+    project {
+        authors = ['Jorge']
+        license = 'Apache-2.0'
+        links {
+            homepage = 'https://github.com/edn-es/helloworld'
+        }
+        inceptionYear = '2023'
+    }
+    gitRootSearch = true
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            nexus2 {
+                create("maven-central") {
+                    active = 'ALWAYS'
+                    url = "https://s01.oss.sonatype.org/service/local"
+                    closeRepository = true
+                    releaseRepository = true
+                    stagingRepositories.add("build/staging-deploy")
+                }
+            }
+        }
+    }
+}
