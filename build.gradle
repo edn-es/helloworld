@@ -7,6 +7,7 @@ group 'es.edn'
 
 jreleaser {
     project {
+        description 'A simple helloworld lib'
         authors = ['Jorge']
         license = 'Apache-2.0'
         links {
@@ -27,7 +28,7 @@ jreleaser {
                     url = "https://s01.oss.sonatype.org/service/local"
                     closeRepository = false
                     releaseRepository = false
-                    stagingRepositories.add("build/staging-deploy")
+                    stagingRepositories.add("hello-world-lib/build/staging-deploy")
                 }
             }
         }

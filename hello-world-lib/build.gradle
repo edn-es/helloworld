@@ -57,7 +57,7 @@ tasks.jar{
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = project.group
+            groupId = 'es.edn'
             artifactId = 'hello-world'
 
             from components.java
